@@ -13,6 +13,7 @@ import { useState } from "react";
 export default function App() {
   const [first, setfirst] = useState("udinus");
 
+  // eventt handler
   const handleCHange = () => {
     setfirst("udinus1");
   };
@@ -21,6 +22,7 @@ export default function App() {
     <NativeBaseProvider>
       <Box safeArea p='5' flex={1} justifyContent='center' rounded='lg'>
         {first}
+        {/* Ini form */}
         <FormControl isRequired isInvalid>
           <FormControl.Label>Username</FormControl.Label>
           <Input p={2} placeholder='Is it react?' />
