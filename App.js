@@ -1,40 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
-import {
-  Box,
-  NativeBaseProvider,
-  Text,
-  FormControl,
-  Input,
-  Button,
-} from "native-base";
-import { useState } from "react";
+import { NativeBaseProvider } from "native-base";
+import Login from "./pages/Login";
 
 export default function App() {
-  const [first, setfirst] = useState("udinus");
-
-  // eventt handler
-  const handleCHange = () => {
-    setfirst("udinus1");
-  };
-
   return (
     <NativeBaseProvider>
-      <Box safeArea p='5' flex={1} justifyContent='center' rounded='lg'>
-        {first}
-        {/* Ini form */}
-        <FormControl isRequired isInvalid>
-          <FormControl.Label>Username</FormControl.Label>
-          <Input p={2} placeholder='Is it react?' />
-          <FormControl.HelperText>
-            We'll keep this between us.
-          </FormControl.HelperText>
-          <FormControl.ErrorMessage>{""}</FormControl.ErrorMessage>
-        </FormControl>
-        <Button colorScheme='primary' onPress={handleCHange}>
-          Primary
-        </Button>
-      </Box>
+      <Login />
       <StatusBar style='auto' />
     </NativeBaseProvider>
   );
