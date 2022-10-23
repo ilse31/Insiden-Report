@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
 import { API } from "../helpers/API";
 
