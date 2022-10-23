@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { NativeBaseProvider } from "native-base";
-import Login from "./pages/Login";
+import AddLaporan from "./pages/AddLaporan";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Login />
+      <AddLaporan />
       <StatusBar style='auto' />
     </NativeBaseProvider>
   );
