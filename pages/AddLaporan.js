@@ -1,28 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, VStack, FormControl, Input, Button, Text } from "native-base";
-import { API } from "../helpers/API";
+import useLaporan from "../hooks/useLaporan";
 
 const AddLaporan = () => {
-  const [Laporan, setLaporan] = useState({
-    foto: "",
-    deskripsi: "",
-  });
-
-  // eventt handler
-  const handleCHange = (key, value) => {
-    setLaporan({ ...Laporan, [key]: value });
-  };
-
-  const handleSubmit = () => {
-    API.post("/laporan", Laporan)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  const { handleCHange, handleSubmit, Login } = useLaporan();
   return (
     <Box flex={1} safeArea p={5} justifyContent='center'>
       <Text>AddLaporan</Text>
