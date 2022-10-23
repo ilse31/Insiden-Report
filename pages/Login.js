@@ -1,16 +1,17 @@
 import React from "react";
 import { Box, VStack, FormControl, Input, Button, Heading } from "native-base";
 import useLogin from "../hooks/useLogin";
+import { Formik } from "formik";
 
 const Login = () => {
-  const { handleCHange, handleSubmit, Login } = useLogin();
+  const { handleCHange, handleSubmit, login, errors } = useLogin();
   return (
     <Box safeArea p='5' flex={1} justifyContent='center'>
       <Heading>Login</Heading>
       {/* Ini form */}
       <VStack space={3}>
         <VStack space='5'>
-          <FormControl isRequired isInvalid>
+          <FormControl key={"username"} isRequired isInvalid>
             <FormControl.Label>Username</FormControl.Label>
             <Input
               onChangeText={(value) => handleCHange("username", value)}
@@ -22,9 +23,11 @@ const Login = () => {
             <FormControl.HelperText>
               We'll keep this between us.
             </FormControl.HelperText>
-            <FormControl.ErrorMessage>{""}</FormControl.ErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.username}
+            </FormControl.ErrorMessage>
           </FormControl>
-          <FormControl isRequired isInvalid>
+          <FormControl isRequired isInvalid key={"password"}>
             <FormControl.Label>Password</FormControl.Label>
             <Input
               key='password'
@@ -33,16 +36,25 @@ const Login = () => {
               p={2}
               placeholder='Masukkan Password'
             />
-            <FormControl.ErrorMessage>{""}</FormControl.ErrorMessage>
+            <FormControl.ErrorMessage>
+              {errors.password}
+            </FormControl.ErrorMessage>
           </FormControl>
         </VStack>
         <VStack space={5}>
-          {Login.username && Login.password ? (
-            <Button variant={"solid"} colorScheme='primary'>
+          {login.username && login.password ? (
+            <Button
+              variant={"solid"}
+              onPress={handleSubmit}
+              colorScheme='primary'>
               Login
             </Button>
           ) : (
-            <Button variant={"outline"} colorScheme='primary' disabled>
+            <Button
+              variant={"outline"}
+              onPress={handleSubmit}
+              colorScheme='primary'
+              disabled>
               Login
             </Button>
           )}
