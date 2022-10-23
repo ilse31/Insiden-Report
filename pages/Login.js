@@ -1,19 +1,9 @@
 import React from "react";
 import { Box, VStack, FormControl, Input, Button, Heading } from "native-base";
-import { useState } from "react";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
-  const [LoginForm, setLoginForm] = useState({
-    username: "",
-    password: "",
-  });
-
-  // eventt handler
-  const handleCHange = (key, value) => {
-    setLoginForm({ ...LoginForm, [key]: value });
-  };
-
-  const handleSubmit = () => {};
+  const { handleCHange, handleSubmit, Login } = useLogin();
   return (
     <Box safeArea p='5' flex={1} justifyContent='center'>
       <Heading>Login</Heading>
@@ -47,9 +37,15 @@ const Login = () => {
           </FormControl>
         </VStack>
         <VStack space={5}>
-          <Button colorScheme='primary' onPress={handleCHange}>
-            Login
-          </Button>
+          {Login.username && Login.password ? (
+            <Button variant={"solid"} colorScheme='primary'>
+              Login
+            </Button>
+          ) : (
+            <Button variant={"outline"} colorScheme='primary' disabled>
+              Login
+            </Button>
+          )}
           <Button variant={"outline"} colorScheme='primary'>
             Sign Up
           </Button>

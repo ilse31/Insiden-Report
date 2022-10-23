@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { NativeBaseProvider } from "native-base";
-import AddLaporan from "./pages/AddLaporan";
+import "react-native-gesture-handler";
+import Login from "./pages/Login";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <AddLaporan />
+      <Login />
       <StatusBar style='auto' />
     </NativeBaseProvider>
   );
