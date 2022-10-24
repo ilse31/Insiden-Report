@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { API } from "../helpers/API";
 import * as ImagePicker from "expo-image-picker";
+import * as DocumentPicker from "expo-document-picker";
 
 const useLaporan = () => {
   const [Laporan, setLaporan] = useState({
@@ -9,48 +10,31 @@ const useLaporan = () => {
     laporan: "",
     status: false,
   });
-  const [foto, setFoto] = useState();
-
+  const [foto, setFoto] = useState("");
+  console.log(foto);
   const pickDocument = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-    if (result.cancelled) {
-      return;
-    }
-    let localUri = result.uri;
-    let filename = localUri.split("/").pop();
-    let match = /\.(\w+)$/.exec(filename);
-    let type = match ? `image/${match[1]}` : `image`;
-    if (!result.cancelled) {
-      setFoto(result.uri);
-    }
     const config = {
       headers: {
-        "Content-type":
-          "multipart/form-data; boundary=" +
-          Math.random().toString().substring(2),
-        Accept: "*/*",
+        "Content-type": "multipart/form-data;",
       },
     };
-    setTimeout(() => {
-      console.log("foto data", filename);
+    await DocumentPicker.getDocumentAsync({}).then((res) => {
+      console.log("res", res.file);
+      setFoto(res.file);
+      console.log("ini foto", foto);
       const formDatas = new FormData();
-      formDatas.append("foto", { uri: localUri, name: filename, type });
-      API.post("/upload", formDatas, config)
-        .then((res) => {
-          console.log("datafoto", res.data);
-        })
-        .catch((error) => {
-          console.log("error", error);
-        })
-        .finally(() => {
-          console.log("selesai");
-        });
-    }, 2000);
+      formDatas.append("foto", res.file);
+      API.post("/upload", formDatas, config).then((res) => {
+        console.log("datafoto", res.data.url);
+        setLaporan({ ...Laporan, foto: res.data.url });
+      });
+    });
+
+    // setTimeout(() => {
+    //   setFoto(result.file);
+    //   console.log("foto data");
+    //
+    // }, 2000);
   };
 
   // eventt handler

@@ -15,12 +15,6 @@ const AddLaporan = () => {
           <FormControl isRequired isInvalid>
             <FormControl.Label>Foto</FormControl.Label>
             <Box backgroundColor={"primary.700"}>
-              {foto && (
-                <Image
-                  source={{ uri: foto }}
-                  style={{ width: 200, height: 200 }}
-                />
-              )}
               <Button onPress={pickDocument}>Upload Foto</Button>
             </Box>
             <FormControl.HelperText>
