@@ -2,7 +2,7 @@ import axios from "axios";
 // import { AsyncStorage } from "react-native";
 
 export const API = axios.create({
-  baseURL: "",
+  baseURL: "https://api-coba1.herokuapp.com/api/",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

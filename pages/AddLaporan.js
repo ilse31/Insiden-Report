@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, VStack, FormControl, Input, Button, Text } from "native-base";
 import useLaporan from "../hooks/useLaporan";
+import { Image } from "react-native";
 
 const AddLaporan = () => {
-  const { handleCHange, handleSubmit, Login } = useLaporan();
+  const { handleCHange, handleSubmit, Laporan, pickDocument, foto } =
+    useLaporan();
+
   return (
     <Box flex={1} safeArea p={5} justifyContent='center'>
       <Text>AddLaporan</Text>
@@ -11,13 +14,15 @@ const AddLaporan = () => {
         <VStack space='5'>
           <FormControl isRequired isInvalid>
             <FormControl.Label>Foto</FormControl.Label>
-            <Input
-              onChangeText={(value) => handleCHange("foto", value)}
-              type='text'
-              key='foto'
-              p={2}
-              placeholder='Masukkan Username'
-            />
+            <Box backgroundColor={"primary.700"}>
+              {foto && (
+                <Image
+                  source={{ uri: foto }}
+                  style={{ width: 200, height: 200 }}
+                />
+              )}
+              <Button onPress={pickDocument}>Upload Foto</Button>
+            </Box>
             <FormControl.HelperText>
               We'll keep this between us.
             </FormControl.HelperText>
@@ -26,8 +31,8 @@ const AddLaporan = () => {
           <FormControl isRequired isInvalid>
             <FormControl.Label>Deskripsi Foto</FormControl.Label>
             <Input
-              key='deskripsi'
-              onChangeText={(value) => handleCHange("deskripsi", value)}
+              key='laporan'
+              onChangeText={(value) => handleCHange("laporan", value)}
               type='text'
               p={2}
               placeholder='Masukkan Deskripsi Foto'
@@ -36,8 +41,11 @@ const AddLaporan = () => {
           </FormControl>
         </VStack>
         <VStack space={5}>
-          {Laporan.foto && Laporan.deskripsi ? (
-            <Button variant={"solid"} colorScheme='primary'>
+          {Laporan.foto && Laporan.laporan ? (
+            <Button
+              variant={"solid"}
+              onPress={handleSubmit}
+              colorScheme='primary'>
               Tambah Laporan
             </Button>
           ) : (
