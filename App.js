@@ -2,12 +2,13 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { NativeBaseProvider } from "native-base";
 import "react-native-gesture-handler";
-import AddLaporan from "./pages/AddLaporan";
+
+import StackRoutes from "./routes/StackRoutes";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <AddLaporan />
+      <StackRoutes />
       <StatusBar style='auto' />
     </NativeBaseProvider>
   );

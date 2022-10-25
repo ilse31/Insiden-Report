@@ -4,7 +4,7 @@ import useLaporan from "../hooks/useLaporan";
 import { Image } from "react-native";
 
 const AddLaporan = () => {
-  const { handleCHange, handleSubmit, Laporan, pickDocument, foto } =
+  const { handleCHange, handleSubmit, Laporan, pickDocument, fotos } =
     useLaporan();
 
   return (

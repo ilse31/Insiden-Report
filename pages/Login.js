@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, VStack, FormControl, Input, Button, Heading } from "native-base";
 import useLogin from "../hooks/useLogin";
-import { Formik } from "formik";
 
-const Login = () => {
-  const { handleCHange, handleSubmit, login, errors } = useLogin();
+const Login = ({ navigation }) => {
+  const { handleCHange, login, errors, handleSubmit } = useLogin(navigation);
+
   return (
     <Box safeArea p='5' flex={1} justifyContent='center'>
       <Heading>Login</Heading>
@@ -45,7 +45,7 @@ const Login = () => {
           {login.username && login.password ? (
             <Button
               variant={"solid"}
-              onPress={handleSubmit}
+              onPressIn={handleSubmit}
               colorScheme='primary'>
               Login
             </Button>
@@ -58,7 +58,10 @@ const Login = () => {
               Login
             </Button>
           )}
-          <Button variant={"outline"} colorScheme='primary'>
+          <Button
+            variant={"outline"}
+            colorScheme='primary'
+            onPress={() => navigation.navigate("Register")}>
             Sign Up
           </Button>
         </VStack>
