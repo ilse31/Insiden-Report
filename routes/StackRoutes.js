@@ -9,11 +9,14 @@ const StackRoutes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {dataRoutesStack.map((route, index) => (
+        {/* <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Register' component={Register} />
+        <Stack.Screen name='MainApp' component={MainApp} /> */}
+        {dataRoutesStack.map((item, index) => (
           <Stack.Screen
             key={index}
-            name={route.name}
-            component={route.component}
+            name={item.name}
+            component={item.component}
             options={{
               headerShown: false,
             }}
