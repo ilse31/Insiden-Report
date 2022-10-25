@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useLogin = () => {
+const useLogin = (navigation) => {
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -24,7 +24,6 @@ const useLogin = () => {
     }
     setLogin({ ...login, [key]: value });
   };
-
   const handleSubmit = () => {
     // API.post("/login", Login)
     //   .then((res) => {
@@ -35,10 +34,12 @@ const useLogin = () => {
     //     console.log(err);
     //     setError(err);
     //   });
-    console.log(errors);
-    console.log(login);
+    // console.log(errors);
+    // console.log(login);
+    navigation.navigate("MainApp");
   };
-  return { handleCHange, handleSubmit, login, errors };
+
+  return { handleCHange, login, errors, handleSubmit };
 };
 
 export default useLogin;

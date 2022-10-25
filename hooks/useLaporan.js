@@ -10,25 +10,53 @@ const useLaporan = () => {
     laporan: "",
     status: false,
   });
-  const [foto, setFoto] = useState("");
-  console.log(foto);
+  const [fotos, setFotos] = useState({
+    foto: {},
+  });
+
   const pickDocument = async () => {
     const config = {
       headers: {
         "Content-type": "multipart/form-data;",
       },
     };
-    await DocumentPicker.getDocumentAsync({}).then((res) => {
-      console.log("res", res.file);
-      setFoto(res.file);
-      console.log("ini foto", foto);
-      const formDatas = new FormData();
-      formDatas.append("foto", res.file);
-      API.post("/upload", formDatas, config).then((res) => {
-        console.log("datafoto", res.data.url);
-        setLaporan({ ...Laporan, foto: res.data.url });
-      });
+
+    const res = await DocumentPicker.getDocumentAsync({
+      type: "image/*",
+      multiple: true,
+      copyToCacheDirectory: false,
     });
+    if (res.type === "success") {
+      setFotos({ foto: res.file });
+      const formData = new FormData();
+      formData.append("foto", {
+        uri: res.uri,
+        type: res.type,
+        name: res.name,
+      });
+      const resFoto = await API.post("/upload", formData, config);
+      setLaporan({ ...Laporan, foto: resFoto.data.data });
+    }
+
+    //   console.log("res", res.file);
+    //   setFotos({ foto: res.file });
+    //   if (fotos) {
+    //     console.log("dataaaa", JSON.stringify(res));
+    //     const formDatas = new FormData();
+    //     formDatas.append("foto", res.file);
+    //     const upload = await API.post("/upload", formDatas, config);
+    //     console.log("datafoto", upload);
+    //     // setLaporan({ ...Laporan, foto: res.data.url });
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    // const formDatas = new FormData();
+    // formDatas.append("foto", res.file);
+    // API.post("/upload", formDatas, config).then((res) => {
+    //   console.log("datafoto", res.data.url);
+    //   setLaporan({ ...Laporan, foto: res.data.url });
+    // });
 
     // setTimeout(() => {
     //   setFoto(result.file);
@@ -61,7 +89,7 @@ const useLaporan = () => {
         });
       });
   };
-  return { Laporan, handleCHange, handleSubmit, pickDocument, foto };
+  return { Laporan, handleCHange, handleSubmit, pickDocument, fotos };
 };
 
 export default useLaporan;
