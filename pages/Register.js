@@ -13,7 +13,7 @@ const Register = ({ navigation }) => {
     errors,
     handleSubmitLogin,
     handleSubmitRegister,
-  } = useRegister();
+  } = useRegister(navigation);
   const route = useRoute();
   return (
     <Box safeArea p='5' flex={1} justifyContent='center'>
@@ -52,10 +52,18 @@ const Register = ({ navigation }) => {
               ))}
         </VStack>
         <VStack space={5}>
-          {route.name === "Register" && register.email && register.username ? (
+          {route.name === "Register" ? (
             <Button
-              variant={"solid"}
+              variant={
+                !register.name ||
+                !register.username ||
+                !register.email ||
+                !register.password
+                  ? "outline"
+                  : "solid"
+              }
               onPressIn={handleSubmitRegister}
+              disabled={!register.email && !register.username ? true : false}
               colorScheme='primary'>
               Register
             </Button>
@@ -67,10 +75,11 @@ const Register = ({ navigation }) => {
               Register
             </Button>
           )}
-          {route.name === "Login" && login.username && login.password ? (
+          {route.name === "Login" ? (
             <Button
-              variant={"solid"}
+              variant={!login.username && !login.password ? "outline" : "solid"}
               onPressIn={handleSubmitLogin}
+              disabled={!login.username && !login.password ? true : false}
               colorScheme='primary'>
               Login
             </Button>

@@ -41,6 +41,10 @@ const useRegister = (navigation) => {
         console.log(res);
         if (res.data.status === 200) {
           navigation.navigate("MainApp");
+          setLogin({
+            username: "",
+            password: "",
+          });
         }
       })
       .catch((err) => {
@@ -54,6 +58,12 @@ const useRegister = (navigation) => {
         console.log(res);
         if (res.data.status === 200) {
           navigation.navigate("Login");
+          setRegister({
+            name: "",
+            username: "",
+            email: "",
+            password: "",
+          });
         }
       })
       .catch((err) => {
