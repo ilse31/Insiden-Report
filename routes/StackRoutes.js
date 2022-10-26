@@ -9,9 +9,6 @@ const StackRoutes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='Register' component={Register} />
-        <Stack.Screen name='MainApp' component={MainApp} /> */}
         {dataRoutesStack.map((item, index) => (
           <Stack.Screen
             key={index}
