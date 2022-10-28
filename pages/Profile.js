@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Box, Text } from "native-base";
 import React from "react";
-
+import useProfile from "../hooks/useProfile";
 const Profile = () => {
+  const { profile, isLoading } = useProfile();
+  console.log(profile);
   return (
-    <View>
+    <Box safeArea p={5}>
       <Text>Profile</Text>
-    </View>
+    </Box>
   );
 };
 

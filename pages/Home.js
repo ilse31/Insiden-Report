@@ -1,14 +1,12 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Box, Text } from "native-base";
 import React from "react";
 
 const Home = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <Box safeArea p={5}>
+      <Text>Aplikasi Insiden Report untuk Contoh Judul Skripsi</Text>
+    </Box>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});

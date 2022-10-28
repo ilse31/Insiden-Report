@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "../helpers/API";
 
 const useHistory = () => {
   const [history, setHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getHistory = async () => {
+  const getHistory = () => {
     API.get("/history")
       .then((res) => {
-        setHistory(res.data);
+        setHistory(res.data.data);
         setIsLoading(false);
       })
       .catch((err) => {

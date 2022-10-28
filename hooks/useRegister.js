@@ -15,7 +15,6 @@ const useRegister = (navigation) => {
     username: "",
     password: "",
   });
-
   const handleChangeLogin = (key, value) => {
     if (key === "username") {
       if (value.length < 5) {

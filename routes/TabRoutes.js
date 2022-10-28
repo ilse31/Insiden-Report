@@ -12,10 +12,6 @@ export const MainApp = () => {
           height: 55,
         },
       }}>
-      {/* <Tabs.Screen name='History' component={History} />
-      <Tabs.Screen name='Profile' component={Profile} />
-      <Tabs.Screen name='Home' component={Home} />
-      <Tabs.Screen name='AddLaporan' component={AddLaporan} /> */}
       {dataRoutesTab.map((item, index) => (
         <Tabs.Screen
           key={index}
