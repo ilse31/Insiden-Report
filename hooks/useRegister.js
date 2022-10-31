@@ -6,6 +6,7 @@ const useRegister = (navigation) => {
     username: "",
     email: "",
     password: "",
+    role_id: ""
   });
   const [login, setLogin] = useState({
     username: "",
