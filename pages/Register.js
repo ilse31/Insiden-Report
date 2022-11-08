@@ -3,24 +3,19 @@ import { Box, VStack, FormControl, Input, Button, Heading } from "native-base";
 import useRegister from "../hooks/useRegister";
 import { useRoute } from "@react-navigation/native";
 import { formLogin, formRegister } from "../helpers/DataForm";
+import { API } from "../helpers/API";
 
 const Register = ({ navigation }) => {
-  const {
-    handleCHangeRegister,
-    handleChangeLogin,
-    register,
-    login,
-    errors,
-    handleSubmitLogin,
-    handleSubmitRegister,
-  } = useRegister(navigation);
+  const { handleChangeLogin, login, errors, handleSubmitLogin } =
+    useRegister(navigation);
   const route = useRoute();
   return (
     <Box safeArea p='5' flex={1} justifyContent='center'>
       <Heading>{route.name}</Heading>
+      {route.name === "Register"}
       <VStack space={3}>
         <VStack space='5'>
-          {route.name === "Register"
+          {route.name == "Register"
             ? formRegister.map((item, index) => (
                 <FormControl key={index}>
                   <FormControl.Label>{item.label}</FormControl.Label>
@@ -52,18 +47,18 @@ const Register = ({ navigation }) => {
               ))}
         </VStack>
         <VStack space={5}>
-          {route.name === "Register" ? (
+          {route.name == "Register" ? (
             <Button
               variant={
-                !register.name ||
-                !register.username ||
-                !register.email ||
-                !register.password
+                register.name === "" ||
+                register.username === "" ||
+                register.email === "" ||
+                register.password === "" ||
+                register.role_id === ""
                   ? "outline"
                   : "solid"
               }
               onPressIn={handleSubmitRegister}
-              disabled={!register.email && !register.username ? true : false}
               colorScheme='primary'>
               Register
             </Button>
@@ -71,7 +66,7 @@ const Register = ({ navigation }) => {
             <Button
               variant={"outline"}
               onPress={() => navigation.navigate("Register")}
-              colorScheme='primary'>
+              colorScheme='danger'>
               Register
             </Button>
           )}

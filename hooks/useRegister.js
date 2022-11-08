@@ -6,7 +6,7 @@ const useRegister = (navigation) => {
     username: "",
     email: "",
     password: "",
-    role_id: ""
+    role_id: "",
   });
   const [login, setLogin] = useState({
     username: "",
@@ -36,10 +36,12 @@ const useRegister = (navigation) => {
   };
 
   const handleSubmitLogin = () => {
+    console.log(login);
     API.post("/login", login)
       .then((res) => {
         console.log(res);
         if (res.data.status === 200) {
+          alert(res.data.message);
           navigation.navigate("MainApp");
           setLogin({
             username: "",
@@ -53,10 +55,10 @@ const useRegister = (navigation) => {
       });
   };
   const handleSubmitRegister = () => {
-    API.post("/register", login)
+    API.post("/register", register)
       .then((res) => {
-        console.log(res);
         if (res.data.status === 200) {
+          alert(res.data.message);
           navigation.navigate("Login");
           setRegister({
             name: "",
