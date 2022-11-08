@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API } from "../helpers/API";
+
 const useRegister = (navigation) => {
   const [register, setRegister] = useState({
     name: "",
