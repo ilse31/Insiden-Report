@@ -3,11 +3,17 @@ import { Box, VStack, FormControl, Input, Button, Heading } from "native-base";
 import useRegister from "../hooks/useRegister";
 import { useRoute } from "@react-navigation/native";
 import { formLogin, formRegister } from "../helpers/DataForm";
-import { API } from "../helpers/API";
 
 const Register = ({ navigation }) => {
-  const { handleChangeLogin, login, errors, register, handleSubmitLogin } =
-    useRegister(navigation);
+  const {
+    handleChangeLogin,
+    login,
+    errors,
+    register,
+    handleSubmitLogin,
+    handleSubmitRegister,
+    handleCHangeRegister,
+  } = useRegister(navigation);
   const route = useRoute();
   return (
     <Box safeArea p='5' flex={1} justifyContent='center'>
