@@ -6,7 +6,7 @@ import { formLogin, formRegister } from "../helpers/DataForm";
 import { API } from "../helpers/API";
 
 const Register = ({ navigation }) => {
-  const { handleChangeLogin, login, errors, handleSubmitLogin } =
+  const { handleChangeLogin, login, errors, register, handleSubmitLogin } =
     useRegister(navigation);
   const route = useRoute();
   return (
