@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { API } from "../helpers/API";
 const useRegister = (navigation) => {
   const [register, setRegister] = useState({
     name: "",
@@ -52,6 +52,7 @@ const useRegister = (navigation) => {
       .catch((err) => {
         console.log(err);
         setErrors(err);
+        alert("Username atau Password salah");
       });
   };
   const handleSubmitRegister = () => {

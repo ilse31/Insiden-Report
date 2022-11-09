@@ -7,8 +7,8 @@ const useProfile = () => {
   const getProfile = async () => {
     await API.get("/user")
       .then((res) => {
-        console.log(res);
-        setProfile(res.data.data);
+        console.log(res.data);
+        setProfile(res.data);
         setIsLoading(false);
       })
       .catch((err) => {
