@@ -10,33 +10,43 @@ const useLaporan = () => {
     laporan: "",
     status: false,
   });
-  const [fotos, setFotos] = useState({
-    foto: {},
-  });
+  const [fotos, setFotos] = useState(null);
 
   const pickDocument = async () => {
-    const config = {
-      headers: {
-        "Content-type": "multipart/form-data;",
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     "Content-type": "multipart/form-data;",
+    //   },
+    // };
 
     const res = await DocumentPicker.getDocumentAsync({
       type: "image/*",
       multiple: true,
       copyToCacheDirectory: false,
     });
-    if (res.type === "success") {
-      setFotos({ foto: res.file });
-      const formData = new FormData();
-      formData.append("foto", {
-        uri: res.uri,
-        type: res.type,
-        name: res.name,
-      });
-      const resFoto = await API.post("/upload", formData, config);
-      setLaporan({ ...Laporan, foto: resFoto.data.data });
+    console.log(res);
+    if (!res.cancelled) {
+      setFotos({ foto: res });
+      setLaporan({ ...Laporan, foto: res.uri });
     }
+
+    // const blobs = await res.blob();
+    // console.log(blobs);
+    // const formData = new FormData();
+    // formData.append("foto", res);
+
+    // API.post("/upload", { res }, config)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setFotos({
+    //       foto: res.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log("Api call error");
+    //   });
+    // console.log("res", resFoto.data);
+    // setLaporan({ ...Laporan, foto: resFoto.data.data });
 
     //   console.log("res", res.file);
     //   setFotos({ foto: res.file });
